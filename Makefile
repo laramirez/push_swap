@@ -6,7 +6,7 @@
 #    By: lramirez <lramirez@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/04/21 16:48:26 by lramirez          #+#    #+#              #
-#    Updated: 2017/10/31 10:08:24 by lramirez         ###   ########.fr        #
+#    Updated: 2017/10/31 18:11:53 by lramirez         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,9 +19,9 @@ CHECKER_SRC_DIR = ./checker_dir/sources/
 OBJ_DIR = ./push_swap_dir/objects/
 CHECKER_OBJ_DIR = ./checker_dir/objects/
 _OBJ =	main.o \
-		# instructions.o \
-		# compute_solution.o \
-		# stack_util.o \
+		compute_solution.o \
+		stack_util.o
+		# instructions.o
 		# list_util.o \
 		# tools.o
 _OBJ_CHECKER =	main.o \

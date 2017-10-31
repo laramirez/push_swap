@@ -6,49 +6,79 @@
 /*   By: lramirez <lramirez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/07 11:59:37 by lararamirez       #+#    #+#             */
-/*   Updated: 2017/10/31 10:05:34 by lramirez         ###   ########.fr       */
+/*   Updated: 2017/10/31 18:12:44 by lramirez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
 
-t_element	*create_element(char *arg, int index)
+t_struct		*build(int arg_nbr, char **args)
 {
-	t_element	*new_element;
-	size_t		i;
-	long		nbr;
+	t_struct	*stacks;
+	int			i;
 
-	i = (*arg == '-' && *(arg + 1)) ? 1 : 0;
-	while (arg[i])
+	stacks = (t_struct *)ft_memalloc(sizeof(t_struct));
+	stacks->a_top = NULL;
+	stacks->a_bottom = NULL;
+	stacks->b_top = NULL;
+	stacks->b_bottom = NULL;
+	stacks->a_size = 0;
+	stacks->b_size = 0;
+	i = 0;
+	while (i < arg_nbr)
 	{
-		if (!ft_isdigit(arg[i]) || i > 10)
-			ft_kill();
+		add_to_a(stacks, create_elem(args[i]));
 		i++;
 	}
+	return (stacks);
+}
+
+t_element		*create_elem(char *arg)
+{
+	t_element	*new_elem;
+	long		nbr;
+	char		*tmp;
+
+	tmp = arg;
+	while (ft_isspace(*tmp))
+		tmp++;
+	if (*tmp == '-' || *tmp == '+')
+		tmp++;
+	if (!ft_isdigit(*tmp))
+		ft_kill();
+	while (ft_isdigit(*tmp))
+		tmp++;
+	if (*tmp)
+		ft_kill();
 	nbr = ft_atoi(arg);
 	if (nbr > 2147483647 || nbr < -2147483648)
 		ft_kill();
-	new_element = (t_element *)ft_memalloc(sizeof(t_element));
-	new_element->nbr = (int)nbr;
-	new_element->index = (size_t)index;
-	new_element->next = NULL;
-	return (new_element);
+	new_elem = (t_element *)ft_memalloc(sizeof(t_element));
+	new_elem->nbr = (int)nbr;
+	new_elem->next = NULL;
+	new_elem->previous = NULL;
+	return (new_elem);
 }
 
-void		pile_onto_stack(t_stack *a, t_element *new_element)
+void			add_to_a(t_struct *stacks, t_element *new_elem)
 {
-	new_element->next = a->top;
-	a->top = new_element;
-	a->size++;
-	a->middle = a->size / 2;
+	if (stacks->a_bottom)
+	{
+		new_elem->previous = stacks->a_bottom;
+		stacks->a_bottom->next = new_elem;
+	}
+	stacks->a_bottom = new_elem;
+	(stacks->a_size)++;
+	if (!stacks->a_top)
+		stacks->a_top = new_elem;
 }
 
-void		free_stack(t_stack *stack)
+void			free_stacks(t_struct *stacks)
 {
 	t_element	*tmp_stack;
 	t_element	*tmp_stack_next;
 
-	tmp_stack = stack->top;
+	tmp_stack = stacks->a_top;
 	while (tmp_stack)
 	{
 		tmp_stack_next = tmp_stack->next;
@@ -56,7 +86,5 @@ void		free_stack(t_stack *stack)
 		free(tmp_stack);
 		tmp_stack = tmp_stack_next;
 	}
-	free(stack);
+	free(stacks);
 }
-
-
