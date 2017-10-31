@@ -6,7 +6,7 @@
 /*   By: lramirez <lramirez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/07 11:59:37 by lararamirez       #+#    #+#             */
-/*   Updated: 2017/09/11 16:19:30 by lramirez         ###   ########.fr       */
+/*   Updated: 2017/10/31 10:05:34 by lramirez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,13 +59,4 @@ void		free_stack(t_stack *stack)
 	free(stack);
 }
 
-t_stack		*init_stack(void)
-{
-	t_stack		*new_stack;
 
-	new_stack = (t_stack *)ft_memalloc(sizeof(t_stack));
-	new_stack->top = NULL;
-	new_stack->size = 0;
-	new_stack->middle = 0;
-	return (new_stack);
-}

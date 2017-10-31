@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: lararamirez <lararamirez@student.42.fr>    +#+  +:+       +#+         #
+#    By: lramirez <lramirez@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/04/21 16:48:26 by lramirez          #+#    #+#              #
-#    Updated: 2017/09/24 17:31:46 by lararamirez      ###   ########.fr        #
+#    Updated: 2017/10/31 10:08:24 by lramirez         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,11 +19,11 @@ CHECKER_SRC_DIR = ./checker_dir/sources/
 OBJ_DIR = ./push_swap_dir/objects/
 CHECKER_OBJ_DIR = ./checker_dir/objects/
 _OBJ =	main.o \
-		instructions.o \
-		compute_solution.o \
-		stack_util.o \
-		list_util.o \
-		tools.o
+		# instructions.o \
+		# compute_solution.o \
+		# stack_util.o \
+		# list_util.o \
+		# tools.o
 _OBJ_CHECKER =	main.o \
 				checker_util.o \
 				get.o \
