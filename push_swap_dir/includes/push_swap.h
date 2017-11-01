@@ -6,7 +6,7 @@
 /*   By: lramirez <lramirez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/22 12:21:19 by lararamirez       #+#    #+#             */
-/*   Updated: 2017/10/31 18:15:30 by lramirez         ###   ########.fr       */
+/*   Updated: 2017/11/01 13:49:24 by lramirez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,10 +26,8 @@ typedef struct	s_element
 
 typedef struct	s_struct
 {
-	t_element			*a_top;
-	t_element			*a_bottom;
-	t_element			*b_top;
-	t_element			*b_bottom;
+	t_element			*a;
+	t_element			*b;
 	size_t				a_size;
 	size_t				b_size;
 }				t_struct;
@@ -43,11 +41,10 @@ typedef	struct	s_list
 // /*
 // ** Functions in instructions.c
 // */
-// void				swap(t_stack *stack, t_list **instructions, char target);
-// void				rotate(t_stack *stack, t_list **instructions, char target);
-// void				rev_rotate(t_stack *stack, t_list **instructions, char target);
-// void				push(t_stack *send_stack, t_stack *receive_stack,
-// 						t_list **instructions, char target);
+void				swap(t_struct *stacks, t_list **instructions, char target);
+void				rotate(t_struct *stacks, t_list **instructions, char target);
+void				rev_rotate(t_struct *stacks, t_list **instructions, char target);
+void				push(t_struct *stacks, t_list **instructions, char target);
 // char				*last(t_list **instructions);
 
 // /*

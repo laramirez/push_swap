@@ -6,7 +6,7 @@
 /*   By: lramirez <lramirez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/07 11:59:37 by lararamirez       #+#    #+#             */
-/*   Updated: 2017/10/31 18:12:44 by lramirez         ###   ########.fr       */
+/*   Updated: 2017/11/01 15:16:22 by lramirez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,10 +18,8 @@ t_struct		*build(int arg_nbr, char **args)
 	int			i;
 
 	stacks = (t_struct *)ft_memalloc(sizeof(t_struct));
-	stacks->a_top = NULL;
-	stacks->a_bottom = NULL;
-	stacks->b_top = NULL;
-	stacks->b_bottom = NULL;
+	stacks->a = NULL;
+	stacks->b = NULL;
 	stacks->a_size = 0;
 	stacks->b_size = 0;
 	i = 0;
@@ -62,15 +60,29 @@ t_element		*create_elem(char *arg)
 
 void			add_to_a(t_struct *stacks, t_element *new_elem)
 {
-	if (stacks->a_bottom)
+	t_element	*tmp;
+	size_t		size;
+
+	printf("stacks->a_size (%zu)\n", stacks->a_size);
+	if (!stacks->a_size)
+		stacks->a = new_elem;
+	else
 	{
-		new_elem->previous = stacks->a_bottom;
-		stacks->a_bottom->next = new_elem;
+		tmp = stacks->a;
+		size = stacks->a_size;
+		while (size)
+		{
+			if (new_elem->nbr == tmp->nbr)
+				ft_kill();
+			tmp = tmp->next;
+			size--;
+		}
+		tmp = stacks->a->previous;
+		stacks->a->previous = new_elem;
+		new_elem->next = stacks->a;
+		new_elem->previous = (tmp) ? tmp : stacks->a;
 	}
-	stacks->a_bottom = new_elem;
 	(stacks->a_size)++;
-	if (!stacks->a_top)
-		stacks->a_top = new_elem;
 }
 
 void			free_stacks(t_struct *stacks)
@@ -78,13 +90,14 @@ void			free_stacks(t_struct *stacks)
 	t_element	*tmp_stack;
 	t_element	*tmp_stack_next;
 
-	tmp_stack = stacks->a_top;
-	while (tmp_stack)
+	tmp_stack = stacks->a;
+	while (stacks->a_size)
 	{
 		tmp_stack_next = tmp_stack->next;
 		tmp_stack->next = NULL;
 		free(tmp_stack);
 		tmp_stack = tmp_stack_next;
+		(stacks->a_size)--;
 	}
 	free(stacks);
 }

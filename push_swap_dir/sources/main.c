@@ -6,12 +6,41 @@
 /*   By: lramirez <lramirez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/07 12:10:54 by lararamirez       #+#    #+#             */
-/*   Updated: 2017/10/31 18:20:21 by lramirez         ###   ########.fr       */
+/*   Updated: 2017/11/01 15:15:02 by lramirez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
 #include <stdio.h>
+
+void		display_instructions(t_list **instructions, char option)
+{
+	t_list	*tmp;
+	t_list	*tmp_next;
+	size_t	count;
+
+	count = 0;
+	tmp = *instructions;
+	while (tmp)
+	{
+		if (option)
+			count++;
+		ft_printf("%s\n", tmp->command);
+		tmp = tmp->next;
+	}
+	if (option)
+		ft_printf("total operations: [%zu]\n", count);
+	tmp = *instructions;
+	while (tmp)
+	{
+		tmp_next = tmp->next;
+		free(tmp->command);
+		tmp->next = NULL;
+		free(tmp);
+		tmp = tmp_next;
+	}
+	free(instructions);
+}
 
 // static void		compute(t_struct *stacks, char option)
 // {
@@ -22,9 +51,7 @@
 // 		instructions = (t_list **)ft_memalloc(sizeof(t_list *));
 // 		*instructions = NULL;
 // 	}
-	
-		
-// 	// display_instructions(compute_solution(stacks, instructions), option);
+// 	display_instructions(compute_solution(stacks, instructions), option);
 // 	free_stacks(stacks);
 // }
 
@@ -39,6 +66,7 @@ int				main(int argc, char **argv)
 	t_struct	*stacks;
 	char		option;
 	t_element	*tmp;
+	size_t		size;
 
 	if (argc <= 1)
 		usage();
@@ -50,21 +78,42 @@ int				main(int argc, char **argv)
 			ft_strsplit(argv[1 + option], ' '));
 	else
 		stacks = build(argc - option - 1, argv + 1 + option);
-	tmp = stacks->a_top;
+	tmp = stacks->a;
+	size = stacks->a_size;
 	printf("stack size -- [%zu]\n", stacks->a_size);
-	while (tmp)
+	while (size)
 	{
 		printf("[%d]\n", tmp->nbr);
 		tmp = tmp->next;
+		size--;
 	}
-	if (is_sorted(stacks->a_top, stacks->a_size))
+	if (is_sorted(stacks->a, stacks->a_size))
 		printf("Pile is sorted\n");
 	else
 		printf("Pile is NOT sorted\n");
-	if (is_rev_sorted(stacks->a_bottom, stacks->a_size))
+	if (is_rev_sorted(stacks->a, stacks->a_size))
 		printf("Pile is rev_sorted\n");
 	else
 		printf("Pile is NOT rev_sorted\n");
+	// // push(stacks, NULL, 'a');
+	// tmp = stacks->a;
+	// size = stacks->a_size;
+	// printf("a stack size -- [%zu]\n", stacks->a_size);
+	// while (size)
+	// {
+	// 	printf("[%d]\n", tmp->nbr);
+	// 	tmp = tmp->next;
+	// 	size--;
+	// }
+	// tmp = stacks->b;
+	// size = stacks->b_size;
+	// printf("b stack size -- [%zu]\n", stacks->b_size);
+	// while (size)
+	// {
+	// 	printf("[%d]\n", tmp->nbr);
+	// 	tmp = tmp->previous;
+	// 	size--;
+	// }
 	// compute(stacks, option);
 	return (0);
 }

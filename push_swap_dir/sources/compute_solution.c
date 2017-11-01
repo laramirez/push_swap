@@ -6,19 +6,19 @@
 /*   By: lramirez <lramirez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/02 12:11:19 by lararamirez       #+#    #+#             */
-/*   Updated: 2017/10/31 18:22:14 by lramirez         ###   ########.fr       */
+/*   Updated: 2017/11/01 15:06:04 by lramirez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
 
-int			is_sorted(t_element *stack_top, size_t stack_size)
+int			is_sorted(t_element *stack, size_t stack_size)
 {
 	t_element	*tmp;
 
 	if (stack_size < 2)
 		return (1);
-	tmp = stack_top;
+	tmp = stack;
 	while (stack_size - 1)
 	{
 		if (tmp->nbr > tmp->next->nbr)
@@ -29,18 +29,18 @@ int			is_sorted(t_element *stack_top, size_t stack_size)
 	return (1);
 }
 
-int			is_rev_sorted(t_element *stack_bottom, size_t stack_size)
+int			is_rev_sorted(t_element *stack, size_t stack_size)
 {
 	t_element	*tmp;
 
 	if (stack_size < 2)
 		return (1);
-	tmp = stack_bottom;
+	tmp = stack;
 	while (stack_size - 1)
 	{
-		if (tmp->nbr > tmp->previous->nbr)
+		if (tmp->nbr < tmp->next->nbr)
 			return (0);
-		tmp = tmp->previous;
+		tmp = tmp->next;
 		stack_size--;
 	}
 	return (1);

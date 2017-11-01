@@ -6,7 +6,7 @@
 #    By: lramirez <lramirez@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/04/21 16:48:26 by lramirez          #+#    #+#              #
-#    Updated: 2017/10/31 18:11:53 by lramirez         ###   ########.fr        #
+#    Updated: 2017/11/01 11:58:37 by lramirez         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,8 +20,8 @@ OBJ_DIR = ./push_swap_dir/objects/
 CHECKER_OBJ_DIR = ./checker_dir/objects/
 _OBJ =	main.o \
 		compute_solution.o \
-		stack_util.o
-		# instructions.o
+		stack_util.o \
+		instructions.o
 		# list_util.o \
 		# tools.o
 _OBJ_CHECKER =	main.o \
