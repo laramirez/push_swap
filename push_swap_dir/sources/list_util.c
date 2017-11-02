@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   list_util.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lramirez <lramirez@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lararamirez <lararamirez@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/07 12:03:23 by lararamirez       #+#    #+#             */
-/*   Updated: 2017/11/01 11:55:28 by lramirez         ###   ########.fr       */
+/*   Updated: 2017/11/02 12:56:09 by lararamirez      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,5 +31,3 @@ void		add_to_list(t_list **instructions, char *command)
 	tmp->next->command = ft_strdup(command);
 	tmp->next->next = NULL;
 }
-
-

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lramirez <lramirez@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lararamirez <lararamirez@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/22 12:21:19 by lararamirez       #+#    #+#             */
-/*   Updated: 2017/11/01 13:49:24 by lramirez         ###   ########.fr       */
+/*   Updated: 2017/11/02 17:30:59 by lararamirez      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,14 +44,13 @@ typedef	struct	s_list
 void				swap(t_struct *stacks, t_list **instructions, char target);
 void				rotate(t_struct *stacks, t_list **instructions, char target);
 void				rev_rotate(t_struct *stacks, t_list **instructions, char target);
-void				push(t_struct *stacks, t_list **instructions, char target);
-// char				*last(t_list **instructions);
+void				push_a(t_struct *stacks, t_list **instructions);
+void				push_b(t_struct *stacks, t_list **instructions);
 
 // /*
 // ** Functions in compute_solution.c
 // */
-// t_list			**compute_solution(t_stack *a, t_stack *b,
-// 					t_list **instructions);
+t_list			**compute_solution(t_struct *stacks, t_list **instructions);
 // size_t			cost(t_stack *a, size_t i);
 // void			select_min_and_bubble(t_stack *a, t_stack *b,
 // 					size_t min1_index, t_list **instructions);
@@ -66,20 +65,16 @@ void				push(t_struct *stacks, t_list **instructions, char target);
 // size_t			get_min_index(t_stack *a);
 // size_t			get_second_min_index(t_stack *a, size_t ignore_index);
 // void				duplicates_check(t_stack *stack);
-// int				is_sorted(t_stack *stack);
-// int				is_rev_sorted(t_stack *stack);
+int				is_sorted(t_element *stack_top, size_t stack_size);
+int				is_rev_sorted(t_element *stack_bottom, size_t stack_size);
 
 /*
 ** Functions in stack_util.c
 */
 t_struct		*build(int arg_nbr, char **args);
 t_element		*create_elem(char *arg);
-void			add_to_a(t_struct *stacks, t_element *new_elem);
+void			add_to_a(t_struct *stacks, t_element *new_elem, char last);
 void			free_stacks(t_struct *stacks);
-int				is_sorted(t_element *stack_top, size_t stack_size);
-int				is_rev_sorted(t_element *stack_bottom, size_t stack_size);
-
-
 
 /*
 ** Functions in list_util.c

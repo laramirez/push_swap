@@ -3,75 +3,97 @@
 /*                                                        :::      ::::::::   */
 /*   compute_solution.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lramirez <lramirez@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lararamirez <lararamirez@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/02 12:11:19 by lararamirez       #+#    #+#             */
-/*   Updated: 2017/11/01 15:06:04 by lramirez         ###   ########.fr       */
+/*   Updated: 2017/11/02 17:57:53 by lararamirez      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
 
-int			is_sorted(t_element *stack, size_t stack_size)
+void        sort_a(t_struct *stacks, size_t a_size, t_list **instructions)
 {
-	t_element	*tmp;
+    t_element   *tmp;
+    size_t      index;
 
-	if (stack_size < 2)
-		return (1);
-	tmp = stack;
-	while (stack_size - 1)
-	{
-		if (tmp->nbr > tmp->next->nbr)
-			return (0);
-		tmp = tmp->next;
-		stack_size--;
-	}
-	return (1);
+    printf("it is %zu\n", a_size / 2);
+    if (a_size == 2)
+        swap(stacks, instructions, 'a');
+    else
+    {
+        tmp = stacks->a;
+        index = 0;
+        while (a_size - 1)
+        {
+            if (tmp->nbr > tmp->next->nbr)
+            {
+                if (index == 0 && tmp->nbr < tmp->next->next->nbr)
+                {
+                    swap(stacks, instructions, 'a');
+                    return ;
+                }
+                else if (index < a_size / 2)
+                {
+                    while (index + 1)
+                    {
+                        rotate(stacks, instructions, 'a');
+                        index--;
+                    }
+                    return ;
+                }
+                else
+                {
+                    while (index)
+                    {
+                        rev_rotate(stacks, instructions, 'a');
+                        index--;
+                    }
+                    return ;
+                }
+            }
+            a_size--;
+            index++;
+            tmp = tmp->next;
+        }
+    }
 }
 
-int			is_rev_sorted(t_element *stack, size_t stack_size)
+char        is_sortable_in_place(t_element *a, size_t a_size)
 {
-	t_element	*tmp;
+    t_element   *tmp;
+    size_t      sorted;
 
-	if (stack_size < 2)
-		return (1);
-	tmp = stack;
-	while (stack_size - 1)
-	{
-		if (tmp->nbr < tmp->next->nbr)
-			return (0);
-		tmp = tmp->next;
-		stack_size--;
-	}
-	return (1);
+    if (a_size <= 2)
+        return (1);
+    tmp = a;
+    sorted = 0;
+    while (a_size - 1)
+    {
+        if (tmp->nbr > tmp->next->nbr)
+            sorted++;
+        tmp = tmp->next;
+        a_size--;
+    }
+    if (sorted < 2)
+        return (1);
+    return (0);
 }
 
-// size_t		cost_to_sort(t_elem *current, t_struct *stacks)
-// {
-// 	return ();
-// }
+t_list		**compute_solution(t_struct *stacks, t_list **instructions)
+{
+    char test;
 
-// void		select_cheapest_move(t_struct *stacks)
-// {
-
-// }
-
-// t_list		**compute_solution(t_stack *a, t_stack *b, t_list **instructions)
-// {
-// 	while (!is_sorted(a) && a->size > 2)
-// 	{
-// 		if (a->size == 3 && is_rev_sorted(a))
-// 		{
-// 			swap(a, instructions, 'a');
-// 			rev_rotate(a, instructions, 'a');
-// 			break ;
-// 		}
-// 		min1_index = get_min_index(a);
-// 		select_min_and_bubble(a, b, min1_index, instructions);
-// 	}
-// 	if (a->size == 2 && !is_sorted(a))
-// 		swap(a, instructions, 'a');
-// 	while (b->size)
-// 		push(b, a, instructions, 'a');
-// 	return (optimize(instructions));
-// }
+    test = 1;
+    while (!is_sorted(stacks->a, stacks->a_size) && test)
+	{
+        if (is_sortable_in_place(stacks->a, stacks->a_size))
+            sort_a(stacks, stacks->a_size, instructions);
+        test--;
+        // else
+        //     push_cheapest_onto_b(stacks, instructions);
+	}
+    // if (stacks->b_size)
+    //     push_back_onto_a(stacks, instructions);
+	return (instructions);
+}

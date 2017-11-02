@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lramirez <lramirez@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lararamirez <lararamirez@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/07 12:10:54 by lararamirez       #+#    #+#             */
-/*   Updated: 2017/11/01 15:15:02 by lramirez         ###   ########.fr       */
+/*   Updated: 2017/11/02 17:31:59 by lararamirez      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,23 +61,13 @@ static void		usage(void)
 	exit (EXIT_SUCCESS);
 }
 
-int				main(int argc, char **argv)
+void			test(t_struct *stacks)
 {
-	t_struct	*stacks;
-	char		option;
 	t_element	*tmp;
 	size_t		size;
+	t_list		**instructions;
 
-	if (argc <= 1)
-		usage();
-	option = ft_strequ("-t", argv[1]) ? 1 : 0;
-	if (option && argc == 2)
-		usage();
-	if (argc - option == 2 && ft_strchr(argv[1 + option], ' '))
-		stacks = build(ft_countwords(argv[1 + option], ' '),
-			ft_strsplit(argv[1 + option], ' '));
-	else
-		stacks = build(argc - option - 1, argv + 1 + option);
+	instructions = NULL;
 	tmp = stacks->a;
 	size = stacks->a_size;
 	printf("stack size -- [%zu]\n", stacks->a_size);
@@ -95,25 +85,43 @@ int				main(int argc, char **argv)
 		printf("Pile is rev_sorted\n");
 	else
 		printf("Pile is NOT rev_sorted\n");
-	// // push(stacks, NULL, 'a');
-	// tmp = stacks->a;
-	// size = stacks->a_size;
-	// printf("a stack size -- [%zu]\n", stacks->a_size);
-	// while (size)
-	// {
-	// 	printf("[%d]\n", tmp->nbr);
-	// 	tmp = tmp->next;
-	// 	size--;
-	// }
-	// tmp = stacks->b;
-	// size = stacks->b_size;
-	// printf("b stack size -- [%zu]\n", stacks->b_size);
-	// while (size)
-	// {
-	// 	printf("[%d]\n", tmp->nbr);
-	// 	tmp = tmp->previous;
-	// 	size--;
-	// }
+	compute_solution(stacks, instructions);
+	tmp = stacks->a;
+	size = stacks->a_size;
+	printf("a stack size -- [%zu]\n", stacks->a_size);
+	while (size)
+	{
+		printf("[%d]\n", tmp->nbr);
+		tmp = tmp->next;
+		size--;
+	}
+	tmp = stacks->b;
+	size = stacks->b_size;
+	printf("b stack size -- [%zu]\n", stacks->b_size);
+	while (size)
+	{
+		printf("[%d]\n", tmp->nbr);
+		tmp = tmp->previous;
+		size--;
+	}
+}
+
+int				main(int argc, char **argv)
+{
+	t_struct	*stacks;
+	char		option;
+
+	if (argc <= 1)
+		usage();
+	option = ft_strequ("-t", argv[1]) ? 1 : 0;
+	if (option && argc == 2)
+		usage();
+	if (argc - option == 2 && ft_strchr(argv[1 + option], ' '))
+		stacks = build(ft_countwords(argv[1 + option], ' '),
+			ft_strsplit(argv[1 + option], ' '));
+	else
+		stacks = build(argc - option - 1, argv + 1 + option);
 	// compute(stacks, option);
+	test(stacks);
 	return (0);
 }

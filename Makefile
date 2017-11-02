@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: lramirez <lramirez@student.42.fr>          +#+  +:+       +#+         #
+#    By: lararamirez <lararamirez@student.42.fr>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/04/21 16:48:26 by lramirez          #+#    #+#              #
-#    Updated: 2017/11/01 11:58:37 by lramirez         ###   ########.fr        #
+#    Updated: 2017/11/02 12:56:20 by lararamirez      ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,9 +21,9 @@ CHECKER_OBJ_DIR = ./checker_dir/objects/
 _OBJ =	main.o \
 		compute_solution.o \
 		stack_util.o \
-		instructions.o
-		# list_util.o \
-		# tools.o
+		instructions.o \
+		tools.o \
+		list_util.o
 _OBJ_CHECKER =	main.o \
 				checker_util.o \
 				get.o \
