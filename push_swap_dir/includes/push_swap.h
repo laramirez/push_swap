@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lararamirez <lararamirez@student.42.fr>    +#+  +:+       +#+        */
+/*   By: lramirez <lramirez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/22 12:21:19 by lararamirez       #+#    #+#             */
-/*   Updated: 2017/11/02 17:30:59 by lararamirez      ###   ########.fr       */
+/*   Updated: 2017/11/03 10:44:06 by lramirez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,6 +75,10 @@ t_struct		*build(int arg_nbr, char **args);
 t_element		*create_elem(char *arg);
 void			add_to_a(t_struct *stacks, t_element *new_elem, char last);
 void			free_stacks(t_struct *stacks);
+void       		sort_a(t_struct *stacks, size_t a_size, t_list **instructions);
+char        	is_sortable_in_place(t_element *a, size_t a_size);
+
+
 
 /*
 ** Functions in list_util.c
