@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   instructions.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lararamirez <lararamirez@student.42.fr>    +#+  +:+       +#+        */
+/*   By: lramirez <lramirez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/26 12:20:18 by lararamirez       #+#    #+#             */
-/*   Updated: 2017/11/02 17:47:06 by lararamirez      ###   ########.fr       */
+/*   Updated: 2017/11/03 17:42:10 by lramirez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,12 +91,13 @@ void	push_a(t_struct *stacks, t_list **instructions)
 		tmp = stacks->a;
 		stacks->a = stacks->a->next;
 		(stacks->a_size)--;
+		tmp->previous = (stacks->b_size) ? stacks->b->previous : tmp;
+		tmp->next = (stacks->b_size) ? stacks->b : tmp;
 		if (stacks->b_size)
 		{
-			tmp->previous = stacks->b->previous;
 			stacks->b->previous->next = tmp;
+			stacks->b->previous = tmp;
 		}
-		tmp->next = stacks->b;
 		stacks->b = tmp;
 		(stacks->b_size)++;
 		// add_to_list(instructions, "pa");

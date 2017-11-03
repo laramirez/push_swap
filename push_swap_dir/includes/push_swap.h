@@ -6,7 +6,7 @@
 /*   By: lramirez <lramirez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/22 12:21:19 by lararamirez       #+#    #+#             */
-/*   Updated: 2017/11/03 10:44:06 by lramirez         ###   ########.fr       */
+/*   Updated: 2017/11/03 14:14:06 by lramirez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,8 @@ void				push_b(t_struct *stacks, t_list **instructions);
 // ** Functions in compute_solution.c
 // */
 t_list			**compute_solution(t_struct *stacks, t_list **instructions);
+size_t			*get_placement_costs(size_t *costs, t_struct *stacks, size_t index);
+
 // size_t			cost(t_stack *a, size_t i);
 // void			select_min_and_bubble(t_stack *a, t_stack *b,
 // 					size_t min1_index, t_list **instructions);

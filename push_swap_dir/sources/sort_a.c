@@ -6,7 +6,7 @@
 /*   By: lramirez <lramirez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/03 10:41:55 by lramirez          #+#    #+#             */
-/*   Updated: 2017/11/03 11:02:32 by lramirez         ###   ########.fr       */
+/*   Updated: 2017/11/03 11:47:23 by lramirez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@ void        sort_a(t_struct *stacks, size_t a_size, t_list **instructions)
 	t_element   *tmp;
     size_t      index;
 
-	printf("it is %zu\n", a_size / 2);
 	if (a_size == 2)
 		swap(stacks, instructions, 'a');
 	else

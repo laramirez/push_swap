@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lararamirez <lararamirez@student.42.fr>    +#+  +:+       +#+        */
+/*   By: lramirez <lramirez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/07 12:10:54 by lararamirez       #+#    #+#             */
-/*   Updated: 2017/11/02 17:31:59 by lararamirez      ###   ########.fr       */
+/*   Updated: 2017/11/03 18:32:29 by lramirez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,75 +42,53 @@ void		display_instructions(t_list **instructions, char option)
 	free(instructions);
 }
 
-// static void		compute(t_struct *stacks, char option)
-// {
-// 	t_list		**instructions;
-
-// 	if (option)
-// 	{
-// 		instructions = (t_list **)ft_memalloc(sizeof(t_list *));
-// 		*instructions = NULL;
-// 	}
-// 	display_instructions(compute_solution(stacks, instructions), option);
-// 	free_stacks(stacks);
-// }
-
 static void		usage(void)
 {
 	write(1, "usage : ./push_swap [-t] [\"int int ...\"] or ./push_swap [-t] [int] [int] [...]\n", 79);
 	exit (EXIT_SUCCESS);
 }
 
-void			test(t_struct *stacks)
+void			print_stacks(t_struct *stacks)
 {
-	t_element	*tmp;
-	size_t		size;
-	t_list		**instructions;
+	t_element	*a_tmp;
+	t_element	*b_tmp;
+	size_t		a_size;
+	size_t		b_size;
 
-	instructions = NULL;
-	tmp = stacks->a;
-	size = stacks->a_size;
-	printf("stack size -- [%zu]\n", stacks->a_size);
-	while (size)
+	a_tmp = stacks->a;
+	b_tmp = stacks->b;
+	a_size = stacks->a_size;
+	b_size = stacks->b_size;
+	ft_printf("\n	* -- PILE A -- *	* -- PILE B -- *\n");
+	while (a_size || b_size)
 	{
-		printf("[%d]\n", tmp->nbr);
-		tmp = tmp->next;
-		size--;
+		if (a_size && b_size)
+			ft_printf("	| %12d |	| %12d |\n", a_tmp->nbr, b_tmp->nbr);
+		else if (a_size && !b_size)
+			ft_printf("	| %12d |	| %12c |\n", a_tmp->nbr, ' ');
+		else if (!a_size && b_size)
+			ft_printf("	| %12c |	| %12d |\n", ' ', b_tmp->nbr);
+		if (a_size)
+		{
+			a_tmp = a_tmp->next;
+			a_size--;
+		}
+		if (b_size)
+		{
+			b_tmp = b_tmp->next;
+			b_size--;
+		}
 	}
-	if (is_sorted(stacks->a, stacks->a_size))
-		printf("Pile is sorted\n");
-	else
-		printf("Pile is NOT sorted\n");
-	if (is_rev_sorted(stacks->a, stacks->a_size))
-		printf("Pile is rev_sorted\n");
-	else
-		printf("Pile is NOT rev_sorted\n");
-	compute_solution(stacks, instructions);
-	tmp = stacks->a;
-	size = stacks->a_size;
-	printf("a stack size -- [%zu]\n", stacks->a_size);
-	while (size)
-	{
-		printf("[%d]\n", tmp->nbr);
-		tmp = tmp->next;
-		size--;
-	}
-	tmp = stacks->b;
-	size = stacks->b_size;
-	printf("b stack size -- [%zu]\n", stacks->b_size);
-	while (size)
-	{
-		printf("[%d]\n", tmp->nbr);
-		tmp = tmp->previous;
-		size--;
-	}
+	ft_printf("	* -- PILE A -- *	* -- PILE B -- *\n");
 }
 
 int				main(int argc, char **argv)
 {
 	t_struct	*stacks;
 	char		option;
+	t_list		*instructions;
 
+	instructions = NULL;
 	if (argc <= 1)
 		usage();
 	option = ft_strequ("-t", argv[1]) ? 1 : 0;
@@ -121,7 +99,12 @@ int				main(int argc, char **argv)
 			ft_strsplit(argv[1 + option], ' '));
 	else
 		stacks = build(argc - option - 1, argv + 1 + option);
-	// compute(stacks, option);
-	test(stacks);
+	print_stacks(stacks);
+	push_a(stacks, &instructions);
+	push_a(stacks, &instructions);
+	print_stacks(stacks);
+	// compute_solution(stacks, &instructions);
+	// display_instructions;
+	// print_stacks(stacks);
 	return (0);
 }
