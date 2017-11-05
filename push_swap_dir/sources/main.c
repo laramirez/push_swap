@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lramirez <lramirez@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lararamirez <lararamirez@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/07 12:10:54 by lararamirez       #+#    #+#             */
-/*   Updated: 2017/11/03 18:32:29 by lramirez         ###   ########.fr       */
+/*   Updated: 2017/11/05 15:17:00 by lararamirez      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,8 @@ void		display_instructions(t_list **instructions, char option)
 
 static void		usage(void)
 {
-	write(1, "usage : ./push_swap [-t] [\"int int ...\"] or ./push_swap [-t] [int] [int] [...]\n", 79);
+	write(1, "usage : ./push_swap [-t] [\"int int ...\"] or \
+		./push_swap [-t] [int] [int] [...]\n", 79);
 	exit (EXIT_SUCCESS);
 }
 
@@ -99,12 +100,7 @@ int				main(int argc, char **argv)
 			ft_strsplit(argv[1 + option], ' '));
 	else
 		stacks = build(argc - option - 1, argv + 1 + option);
-	print_stacks(stacks);
-	push_a(stacks, &instructions);
-	push_a(stacks, &instructions);
-	print_stacks(stacks);
-	// compute_solution(stacks, &instructions);
+	compute_solution(stacks, &instructions);
 	// display_instructions;
-	// print_stacks(stacks);
 	return (0);
 }

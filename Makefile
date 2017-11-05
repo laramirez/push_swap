@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: lramirez <lramirez@student.42.fr>          +#+  +:+       +#+         #
+#    By: lararamirez <lararamirez@student.42.fr>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/04/21 16:48:26 by lramirez          #+#    #+#              #
-#    Updated: 2017/11/03 10:43:38 by lramirez         ###   ########.fr        #
+#    Updated: 2017/11/05 15:56:50 by lararamirez      ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,7 +24,9 @@ _OBJ =	main.o \
 		instructions.o \
 		tools.o \
 		list_util.o \
-		sort_a.o
+		sort_a.o \
+		costs.o \
+		move.o
 _OBJ_CHECKER =	main.o \
 				checker_util.o \
 				get.o \

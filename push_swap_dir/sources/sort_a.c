@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   sort_a.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lramirez <lramirez@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lararamirez <lararamirez@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/03 10:41:55 by lramirez          #+#    #+#             */
-/*   Updated: 2017/11/03 11:47:23 by lramirez         ###   ########.fr       */
+/*   Updated: 2017/11/05 15:16:27 by lararamirez      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,8 @@ char        is_sortable_in_place(t_element *a, size_t a_size)
 	if (a_size <= 2)
 		return (1);
 	tmp = a;
-	swap_needed = (tmp->nbr > tmp->next->nbr && tmp->nbr < tmp->next->next->nbr) ? 1 : 0;
+	swap_needed =
+		(tmp->nbr > tmp->next->nbr && tmp->nbr < tmp->next->next->nbr) ? 1 : 0;
 	index = 0;
 	anomaly = 0;
 	start = NULL;

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lramirez <lramirez@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lararamirez <lararamirez@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/22 12:21:19 by lararamirez       #+#    #+#             */
-/*   Updated: 2017/11/03 14:14:06 by lramirez         ###   ########.fr       */
+/*   Updated: 2017/11/05 16:54:26 by lararamirez      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,12 +47,25 @@ void				rev_rotate(t_struct *stacks, t_list **instructions, char target);
 void				push_a(t_struct *stacks, t_list **instructions);
 void				push_b(t_struct *stacks, t_list **instructions);
 
-// /*
-// ** Functions in compute_solution.c
-// */
-t_list			**compute_solution(t_struct *stacks, t_list **instructions);
-size_t			*get_placement_costs(size_t *costs, t_struct *stacks, size_t index);
+/*
+** Functions in compute_solution.c
+*/
+t_list				**compute_solution(t_struct *stacks, t_list **instructions);
+size_t				*get_placement_costs(size_t *costs, t_struct *stacks, t_element *a, size_t index);
+void				print_stacks(t_struct *stacks);
 
+/*
+** Functions in costs.c
+*/
+size_t				*compute_cheapest(size_t *costs);
+size_t     			*compute_cheapest_2(size_t cost_2, size_t cost_3,
+						size_t cost_4, size_t *costs);
+size_t				*get_placement_costs(size_t *costs, t_struct *stacks,
+						t_element *a, size_t index);
+void				move_cheapest(t_struct *stacks, size_t *min_costs, t_list **instructions);
+						
+		
+	
 // size_t			cost(t_stack *a, size_t i);
 // void			select_min_and_bubble(t_stack *a, t_stack *b,
 // 					size_t min1_index, t_list **instructions);
