@@ -6,7 +6,7 @@
 /*   By: lararamirez <lararamirez@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/02 12:11:19 by lararamirez       #+#    #+#             */
-/*   Updated: 2017/11/05 17:33:34 by lararamirez      ###   ########.fr       */
+/*   Updated: 2017/11/05 18:18:42 by lararamirez      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,8 +70,6 @@ t_list		**compute_solution(t_struct *stacks, t_list **instructions)
 		while (stacks->a_size)
 			push_cheapest_onto_b(stacks, instructions);
 		push_back_onto_a(stacks, instructions);
-	print_stacks(stacks);
 	}
-	print_stacks(stacks);
 	return (instructions);
 }

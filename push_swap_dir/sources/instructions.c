@@ -6,7 +6,7 @@
 /*   By: lararamirez <lararamirez@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/26 12:20:18 by lararamirez       #+#    #+#             */
-/*   Updated: 2017/11/05 17:27:18 by lararamirez      ###   ########.fr       */
+/*   Updated: 2017/11/05 18:18:42 by lararamirez      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void	swap(t_struct *stacks, t_list **instructions, char target)
 		tmp = stacks->a->nbr;
 		stacks->a->nbr = stacks->a->next->nbr;
 		stacks->a->next->nbr = tmp;
-		// add_to_list(instructions, "sa");
+		add_to_list(instructions, "sa");
 	}
 	else if (target == 'b')
 	{
@@ -32,7 +32,7 @@ void	swap(t_struct *stacks, t_list **instructions, char target)
 		tmp = stacks->b->nbr;
 		stacks->b->nbr = stacks->b->next->nbr;
 		stacks->b->next->nbr = tmp;
-		// add_to_list(instructions, "sb");
+		add_to_list(instructions, "sb");
 	}
 	if (instructions)
 		return ;
@@ -45,14 +45,14 @@ void	rotate(t_struct *stacks, t_list **instructions, char target)
 		if (stacks->a_size <= 1)
 			return ;
 		stacks->a = stacks->a->next;
-		// add_to_list(instructions, "ra");
+		add_to_list(instructions, "ra");
 	}
 	else if (target == 'b')
 	{
 		if (stacks->b_size <= 1)
 			return ;
 		stacks->b = stacks->b->next;
-		// add_to_list(instructions, "rb");
+		add_to_list(instructions, "rb");
 	}
 	if (instructions)
 		return ;
@@ -66,14 +66,14 @@ void	rev_rotate(t_struct *stacks, t_list **instructions, char target)
 		if (stacks->a_size <= 1)
 			return ;
 		stacks->a = stacks->a->previous;
-		// add_to_list(instructions, "rra");
+		add_to_list(instructions, "rra");
 	}
 	else if (target == 'b')
 	{
 		if (stacks->b_size <= 1)
 			return ;
 		stacks->b = stacks->b->previous;
-		// add_to_list(instructions, "rrb");
+		add_to_list(instructions, "rrb");
 	}
 	if (instructions)
 		return ;
@@ -101,10 +101,8 @@ void	push_a(t_struct *stacks, t_list **instructions)
 		}
 		stacks->b = tmp;
 		(stacks->b_size)++;
-		// add_to_list(instructions, "pa");
+		add_to_list(instructions, "pa");
 	}
-	if (instructions)
-		return ;
 }
 
 void	push_b(t_struct *stacks, t_list **instructions)
@@ -129,8 +127,6 @@ void	push_b(t_struct *stacks, t_list **instructions)
 			}
 			stacks->a = tmp;
 			(stacks->a_size)++;
-			// add_to_list(instructions, "pa");
+			add_to_list(instructions, "pa");
 		}
-		if (instructions)
-			return ;
 }

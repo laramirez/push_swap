@@ -6,7 +6,7 @@
 /*   By: lararamirez <lararamirez@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/07 12:10:54 by lararamirez       #+#    #+#             */
-/*   Updated: 2017/11/05 15:17:00 by lararamirez      ###   ########.fr       */
+/*   Updated: 2017/11/05 18:25:24 by lararamirez      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ void		display_instructions(t_list **instructions, char option)
 		free(tmp);
 		tmp = tmp_next;
 	}
-	free(instructions);
+	// free(instructions);
 }
 
 static void		usage(void)
@@ -100,7 +100,9 @@ int				main(int argc, char **argv)
 			ft_strsplit(argv[1 + option], ' '));
 	else
 		stacks = build(argc - option - 1, argv + 1 + option);
+	// print_stacks(stacks);
 	compute_solution(stacks, &instructions);
-	// display_instructions;
+	// print_stacks(stacks);
+	display_instructions(&instructions, option);
 	return (0);
 }
