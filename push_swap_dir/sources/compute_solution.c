@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   compute_solution.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lararamirez <lararamirez@student.42.fr>    +#+  +:+       +#+        */
+/*   By: lramirez <lramirez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/02 12:11:19 by lararamirez       #+#    #+#             */
-/*   Updated: 2017/11/05 18:18:42 by lararamirez      ###   ########.fr       */
+/*   Updated: 2017/11/06 09:51:38 by lramirez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
