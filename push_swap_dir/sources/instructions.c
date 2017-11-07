@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   instructions.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lararamirez <lararamirez@student.42.fr>    +#+  +:+       +#+        */
+/*   By: lramirez <lramirez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/26 12:20:18 by lararamirez       #+#    #+#             */
-/*   Updated: 2017/11/05 18:18:42 by lararamirez      ###   ########.fr       */
+/*   Updated: 2017/11/07 15:00:26 by lramirez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,10 +57,9 @@ void	rotate(t_struct *stacks, t_list **instructions, char target)
 	if (instructions)
 		return ;
 }
-	
+
 void	rev_rotate(t_struct *stacks, t_list **instructions, char target)
 {
-
 	if (target == 'a')
 	{
 		if (stacks->a_size <= 1)
@@ -101,32 +100,32 @@ void	push_a(t_struct *stacks, t_list **instructions)
 		}
 		stacks->b = tmp;
 		(stacks->b_size)++;
-		add_to_list(instructions, "pa");
+		add_to_list(instructions, "pb");
 	}
 }
 
 void	push_b(t_struct *stacks, t_list **instructions)
 {
 	t_element	*tmp;
-	
-		if (stacks->b_size == 0)
-			return ;
-		else
+
+	if (stacks->b_size == 0)
+		return ;
+	else
+	{
+		stacks->b->previous->next = stacks->b->next;
+		stacks->b->next->previous = stacks->b->previous;
+		tmp = stacks->b;
+		stacks->b = stacks->b->next;
+		(stacks->b_size)--;
+		tmp->previous = (stacks->a_size) ? stacks->a->previous : tmp;
+		tmp->next = (stacks->a_size) ? stacks->a : tmp;
+		if (stacks->a_size)
 		{
-			stacks->b->previous->next = stacks->b->next;
-			stacks->b->next->previous = stacks->b->previous;
-			tmp = stacks->b;
-			stacks->b = stacks->b->next;
-			(stacks->b_size)--;
-			tmp->previous = (stacks->a_size) ? stacks->a->previous : tmp;
-			tmp->next = (stacks->a_size) ? stacks->a : tmp;
-			if (stacks->a_size)
-			{
-				stacks->a->previous->next = tmp;
-				stacks->a->previous = tmp;
-			}
-			stacks->a = tmp;
-			(stacks->a_size)++;
-			add_to_list(instructions, "pa");
+			stacks->a->previous->next = tmp;
+			stacks->a->previous = tmp;
 		}
+		stacks->a = tmp;
+		(stacks->a_size)++;
+		add_to_list(instructions, "pa");
+	}
 }

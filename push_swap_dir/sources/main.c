@@ -6,18 +6,18 @@
 /*   By: lramirez <lramirez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/07 12:10:54 by lararamirez       #+#    #+#             */
-/*   Updated: 2017/11/06 09:48:45 by lramirez         ###   ########.fr       */
+/*   Updated: 2017/11/07 15:00:47 by lramirez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
 #include <stdio.h>
 
-void		display_instructions(t_list **instructions, char option)
+void			display_instructions(t_list **instructions, char option)
 {
-	t_list	*tmp;
-	t_list	*tmp_next;
-	size_t	count;
+	t_list		*tmp;
+	t_list		*tmp_next;
+	size_t		count;
 
 	count = 0;
 	tmp = *instructions;
@@ -39,48 +39,34 @@ void		display_instructions(t_list **instructions, char option)
 		free(tmp);
 		tmp = tmp_next;
 	}
-	// free(instructions);
+	free(instructions);
 }
 
-static void		usage(void)
+void			usage(void)
 {
 	write(1, "usage : ./push_swap [-t] [\"int int ...\"] or \
 		./push_swap [-t] [int] [int] [...]\n", 79);
-	exit (EXIT_SUCCESS);
+	exit(EXIT_SUCCESS);
 }
 
-void			print_stacks(t_struct *stacks)
+void			add_to_list(t_list **instructions, char *command)
 {
-	t_element	*a_tmp;
-	t_element	*b_tmp;
-	size_t		a_size;
-	size_t		b_size;
+	t_list		*tmp;
 
-	a_tmp = stacks->a;
-	b_tmp = stacks->b;
-	a_size = stacks->a_size;
-	b_size = stacks->b_size;
-	ft_printf("\n	* -- PILE A -- *	* -- PILE B -- *\n");
-	while (a_size || b_size)
+	tmp = *instructions;
+	if (!tmp)
 	{
-		if (a_size && b_size)
-			ft_printf("	| %12d |	| %12d |\n", a_tmp->nbr, b_tmp->nbr);
-		else if (a_size && !b_size)
-			ft_printf("	| %12d |	| %12c |\n", a_tmp->nbr, ' ');
-		else if (!a_size && b_size)
-			ft_printf("	| %12c |	| %12d |\n", ' ', b_tmp->nbr);
-		if (a_size)
-		{
-			a_tmp = a_tmp->next;
-			a_size--;
-		}
-		if (b_size)
-		{
-			b_tmp = b_tmp->next;
-			b_size--;
-		}
+		tmp = (t_list *)ft_memalloc(sizeof(t_list));
+		tmp->command = ft_strdup(command);
+		tmp->next = NULL;
+		*instructions = tmp;
+		return ;
 	}
-	ft_printf("	* -- PILE A -- *	* -- PILE B -- *\n");
+	while (tmp->next)
+		tmp = tmp->next;
+	tmp->next = (t_list *)ft_memalloc(sizeof(t_list));
+	tmp->next->command = ft_strdup(command);
+	tmp->next->next = NULL;
 }
 
 int				main(int argc, char **argv)
@@ -100,9 +86,7 @@ int				main(int argc, char **argv)
 			ft_strsplit(argv[1 + option], ' '));
 	else
 		stacks = build(argc - option - 1, argv + 1 + option);
-	print_stacks(stacks);
 	compute_solution(stacks, &instructions);
-	print_stacks(stacks);
 	display_instructions(&instructions, option);
 	return (0);
 }
