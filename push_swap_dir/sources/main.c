@@ -6,7 +6,7 @@
 /*   By: lramirez <lramirez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/07 12:10:54 by lararamirez       #+#    #+#             */
-/*   Updated: 2017/11/07 15:00:47 by lramirez         ###   ########.fr       */
+/*   Updated: 2017/11/21 10:44:18 by lramirez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ void			display_instructions(t_list **instructions, char option)
 		free(tmp);
 		tmp = tmp_next;
 	}
-	free(instructions);
+	// free(instructions);
 }
 
 void			usage(void)
