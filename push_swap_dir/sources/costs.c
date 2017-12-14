@@ -6,7 +6,7 @@
 /*   By: lramirez <lramirez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/05 15:20:53 by lararamirez       #+#    #+#             */
-/*   Updated: 2017/11/07 14:54:18 by lramirez         ###   ########.fr       */
+/*   Updated: 2017/12/14 14:07:08 by lramirez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,13 +70,15 @@ size_t		*get_placement_costs(size_t *costs, t_struct *stacks,
 	{
 		tmp = stacks->b;
 		index = 0;
-		while (!(a->nbr > tmp->nbr) && index < stacks->b_size)
+		while (!(a->nbr > tmp->nbr && a->nbr < tmp->previous->nbr) && index < stacks->b_size)
 		{
 			index++;
 			tmp = tmp->next;
 		}
 		costs[4] = (index == stacks->b_size) ? 0 : index;
+		// ft_printf("cost B_UP %zu\n", costs[4]);
 		costs[5] = (index == stacks->b_size) ? 0 : stacks->b_size - index;
+		// ft_printf("cost B_DOWN %zu\n", costs[5]);
 	}
 	return (compute_cheapest(costs));
 }
@@ -107,6 +109,4 @@ void		move_cheapest(t_struct *stacks, size_t *costs,
 		}
 	}
 	push_a(stacks, instructions);
-	while (stacks->b->nbr < stacks->b->previous->nbr)
-		rotate(stacks, instructions, 'b');
 }

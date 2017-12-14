@@ -6,7 +6,7 @@
 /*   By: lramirez <lramirez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/03 10:41:55 by lramirez          #+#    #+#             */
-/*   Updated: 2017/11/07 16:42:49 by lramirez         ###   ########.fr       */
+/*   Updated: 2017/12/14 12:11:28 by lramirez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ char		sort_a_2(t_struct *stacks, t_element *tmp,
 			while (*index + 1)
 			{
 				rotate(stacks, instructions, 'a');
-				index--;
+				(*index)--;
 			}
 		}
 		else

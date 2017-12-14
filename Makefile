@@ -6,7 +6,7 @@
 #    By: lramirez <lramirez@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/04/21 16:48:26 by lramirez          #+#    #+#              #
-#    Updated: 2017/11/07 14:26:29 by lramirez         ###   ########.fr        #
+#    Updated: 2017/12/14 13:40:17 by lramirez         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,6 +24,7 @@ _OBJ =	main.o \
 		instructions.o \
 		tools.o \
 		sort_a.o \
+		sort_b.o \
 		costs.o
 _OBJ_CHECKER =	main.o \
 				checker_util.o \

@@ -6,7 +6,7 @@
 /*   By: lramirez <lramirez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/22 12:21:19 by lararamirez       #+#    #+#             */
-/*   Updated: 2017/11/21 10:44:18 by lramirez         ###   ########.fr       */
+/*   Updated: 2017/12/14 13:40:47 by lramirez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,6 +96,12 @@ void			init(size_t *index, size_t *anomaly, t_element **start);
 char			is_sortable_in_place(t_element *a, size_t a_size);
 char			is_sortable_in_place_2(size_t *a_size,
 					char *swap_needed, t_element **start);
+
+/*
+** Functions in sort_b.c
+*/
+void			sort_b(t_struct *stacks, size_t b_size, t_list **instructions);
+char		sort_b_2(t_struct *stacks, t_element *tmp, size_t *index, t_list **instructions);;
 
 /*
 ** Functions in tools.c

@@ -6,7 +6,7 @@
 /*   By: lramirez <lramirez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/02 12:11:19 by lararamirez       #+#    #+#             */
-/*   Updated: 2017/11/06 09:51:38 by lramirez         ###   ########.fr       */
+/*   Updated: 2017/12/14 11:10:31 by lramirez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,17 +47,20 @@ void		push_cheapest_onto_b(t_struct *stacks, t_list **instructions)
 	size_t		min_costs[7];
 
 	get_placement_costs(costs, stacks, stacks->a, 0);
+	// ft_printf("[INDEX_IN_A] %zu [BEST_TOTAL_COST] %zu [A_UP] %zu [A_DOWN] %zu [B_UP] %zu [B_DOWN] %zu [KEY] %zu\n", costs[0], costs[1], costs[2], costs[3], costs[4], costs[5], costs[6]);
 	copy_tab(costs, min_costs);
 	tmp = stacks->a->next;
 	index = 1;
 	while (index < stacks->a_size)
 	{
 		get_placement_costs(costs, stacks, tmp, index);
+		// ft_printf("[INDEX_IN_A] %zu [BEST_TOTAL_COST] %zu [A_UP] %zu [A_DOWN] %zu [B_UP] %zu [B_DOWN] %zu [KEY] %zu\n", costs[0], costs[1], costs[2], costs[3], costs[4], costs[5], costs[6]);
 		if (min_costs[1] > costs[1])
 			copy_tab(costs, min_costs);
 		tmp = tmp->next;
 		index++;
 	}
+	// ft_printf("\nTURN\n");
 	move_cheapest(stacks, min_costs, instructions);
 }
 
