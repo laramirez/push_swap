@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lramirez <lramirez@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lararamirez <lararamirez@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/22 12:21:19 by lararamirez       #+#    #+#             */
-/*   Updated: 2017/12/14 13:40:47 by lramirez         ###   ########.fr       */
+/*   Updated: 2017/12/16 13:03:20 by lararamirez      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,11 +70,12 @@ t_list			**compute_solution(t_struct *stacks, t_list **instructions);
 /*
 ** Functions in costs.c
 */
-size_t			*compute_cheapest_2(size_t cost_2, size_t cost_3,
+void			compute_cheapest_2(size_t cost_2, size_t cost_3,
 					size_t cost_4, size_t *costs);
-size_t			*compute_cheapest(size_t *costs);
-size_t			*get_placement_costs(size_t *costs, t_struct *stacks,
+void			compute_cheapest(size_t *costs);
+void			get_placement_costs(size_t *costs, t_struct *stacks,
 					t_element *a, size_t index);
+void			get_b_placement_costs(size_t *costs, t_struct *stacks, t_element *a);
 void			move_cheapest(t_struct *stacks, size_t *costs,
 					t_list **instructions);
 
