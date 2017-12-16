@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lramirez <lramirez@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lararamirez <lararamirez@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/07 12:10:54 by lararamirez       #+#    #+#             */
-/*   Updated: 2017/11/21 10:44:18 by lramirez         ###   ########.fr       */
+/*   Updated: 2017/12/16 19:15:45 by lararamirez      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,7 +86,10 @@ int				main(int argc, char **argv)
 			ft_strsplit(argv[1 + option], ' '));
 	else
 		stacks = build(argc - option - 1, argv + 1 + option);
-	compute_solution(stacks, &instructions);
-	display_instructions(&instructions, option);
+	if (stacks->a_size > 10)
+		compute_solution(stacks, &instructions);
+	else
+		small_compute(stacks, &instructions);
+	display_instructions(optimize(&instructions), option);
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: lararamirez <lararamirez@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/05 15:20:53 by lararamirez       #+#    #+#             */
-/*   Updated: 2017/12/16 14:11:11 by lararamirez      ###   ########.fr       */
+/*   Updated: 2017/12/16 18:21:56 by lararamirez      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,34 +51,64 @@ void		compute_cheapest(size_t *costs)
 void		get_b_placement_costs(size_t *costs, t_struct *stacks, t_element *a)
 {
 	t_element	*current;
-	size_t		count;
+	int			min;
+	int			max;
+	size_t		index;
+	size_t		min_index;
+	size_t		max_index;
 
-	if (stacks->b_size <= 2)
-	{
-		if (stacks->b_size == 2 &&
-			a->nbr < stacks->b->nbr && a->nbr > stacks->b->next->nbr)
-			costs[4] = 1;
-		else
-			costs[4] = (a->nbr > stacks->b->nbr) ? 0 : 1;
-		costs[5] = costs[4];
-	}
-	else if (a->nbr > stacks->b->nbr && a->nbr < stacks->b->previous->nbr)
-	{
+	// ft_printf("number to place [%zu]\n", a->nbr);
+	if (stacks->b_size == 1)
 		costs[4] = 0;
-		costs[5] = costs[4];
-	}
 	else
 	{
 		current = stacks->b;
-		count = 0;
-		while (!(a->nbr > current->nbr && a->nbr < current->previous->nbr))
+		index = 0;
+		while (current->nbr > current->next->nbr)
 		{
-			count++;
+			index++;
 			current = current->next;
 		}
-		costs[4] = count;
-		costs[5] = stacks->b_size - count;
+		min_index = index;
+		max_index = (index == stacks->b_size - 1) ? 0 : index + 1;
+		min = current->nbr;
+		max = current->next->nbr;
+		// ft_printf("min_index is %zu - max_index is %zu - number to place is %zu\n", min_index, max_index, a->nbr);
+		if (a->nbr < min)
+		{
+			costs[4] = (min_index == stacks->b_size - 1) ? 0 : min_index + 1;
+			costs[5] = stacks->b_size - min_index - 1;
+		}
+		else if (a->nbr > max)
+		{
+			costs[4] = (max_index == 0) ? 0 : max_index;
+			costs[5] = stacks->b_size - max_index;
+		}
+		else
+		{
+			current = stacks->b;
+			index = 0;
+			while (!(a->nbr > current->nbr && a->nbr < current->previous->nbr))
+			{
+				index++;
+				current = current->next;
+			}
+			costs[4] = index;
+			costs[5] = stacks->b_size - index;
+		}
 	}
+	// ft_printf("cost B up [%zu] - cost B down [%zu]\n", costs[4], costs[5]);
+	// ft_printf("-\n", costs[4], costs[5]);
+	// current = stacks->b;
+	// index = stacks->b_size;
+	// while (index)
+	// {
+	// 	ft_printf("- %d -\n", current->nbr);
+	// 	current = current->next;
+	// 	index--;
+	// }
+	// ft_printf("-\n", costs[4], costs[5]);
+	// ft_printf("-\n", costs[4], costs[5]);
 }
 
 void		get_placement_costs(size_t *costs, t_struct *stacks, t_element *a, size_t index)

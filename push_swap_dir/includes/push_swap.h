@@ -6,7 +6,7 @@
 /*   By: lararamirez <lararamirez@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/22 12:21:19 by lararamirez       #+#    #+#             */
-/*   Updated: 2017/12/16 13:03:20 by lararamirez      ###   ########.fr       */
+/*   Updated: 2017/12/16 18:49:20 by lararamirez      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,5 +109,7 @@ char		sort_b_2(t_struct *stacks, t_element *tmp, size_t *index, t_list **instruc
 */
 int				is_sorted(t_element *stack, size_t stack_size);
 int				is_rev_sorted(t_element *stack, size_t stack_size);
+t_list			**optimize(t_list **instructions);
+void			concatenate(t_list *current, t_list *next, char *command);
 
 #endif
