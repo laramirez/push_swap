@@ -3,16 +3,40 @@
 /*                                                        :::      ::::::::   */
 /*   small_compute.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lararamirez <lararamirez@student.42.fr>    +#+  +:+       +#+        */
+/*   By: lramirez <lramirez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/17 11:14:39 by lararamirez       #+#    #+#             */
-/*   Updated: 2017/12/21 10:47:48 by lararamirez      ###   ########.fr       */
+/*   Updated: 2017/12/22 18:14:43 by lramirez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
 
-void        small_compute(t_struct *stacks, t_list **instructions)
+void           bubble_up_min(size_t index, t_struct *stacks, t_list **instructions)
+{
+    if (index <= stacks->a_size / 2)
+    {
+        while (index)
+        {
+            if (is_sortable_in_place(stacks->a, stacks->a_size))
+                return ;
+            rotate(stacks, instructions, 'a');
+            index--;
+        }
+    }
+    else
+    {
+        while (index < stacks->a_size)
+        {
+             if (is_sortable_in_place(stacks->a, stacks->a_size))
+                return ;
+            rev_rotate(stacks, instructions, 'a');
+            index++;
+        }
+    }
+}
+
+size_t        find_min_index(t_struct *stacks)
 {
     int         min;
     t_element   *tmp;
@@ -36,10 +60,28 @@ void        small_compute(t_struct *stacks, t_list **instructions)
         size--;
         tmp = tmp->next;
     }
-
+    return (index_min);
 }
-find min
-bubble up, at each step check if swap or sorting in place works
-push onto b
-check if swap or sorting in place works for rest of the list
-repeat until sorted
+
+void        small_compute(t_struct *stacks, t_list **instructions)
+{
+    while (!is_sorted(stacks->a, stacks->a_size))
+    {
+        if (is_sortable_in_place(stacks->a, stacks->a_size))
+            sort_a(stacks, stacks->a_size, instructions);
+        else if (stacks->a_size == 3)
+        {
+            
+        }
+        else
+        {
+            bubble_up_min(find_min_index(stacks), stacks, instructions);
+            if (is_sortable_in_place(stacks->a, stacks->a_size))
+                sort_a(stacks, stacks->a_size, instructions);
+            else
+                push_a(stacks, instructions);
+        }
+    }
+    while (stacks->b_size)
+        push_b(stacks, instructions);
+}

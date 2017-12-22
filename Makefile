@@ -6,7 +6,7 @@
 #    By: lramirez <lramirez@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/04/21 16:48:26 by lramirez          #+#    #+#              #
-#    Updated: 2017/12/14 13:40:17 by lramirez         ###   ########.fr        #
+#    Updated: 2017/12/22 17:32:48 by lramirez         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,7 +25,8 @@ _OBJ =	main.o \
 		tools.o \
 		sort_a.o \
 		sort_b.o \
-		costs.o
+		costs.o \
+		small_compute.o
 _OBJ_CHECKER =	main.o \
 				checker_util.o \
 				get.o \
