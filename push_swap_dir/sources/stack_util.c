@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   stack_util.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lararamirez <lararamirez@student.42.fr>    +#+  +:+       +#+        */
+/*   By: lramirez <lramirez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/07 11:59:37 by lararamirez       #+#    #+#             */
-/*   Updated: 2017/11/05 18:25:24 by lararamirez      ###   ########.fr       */
+/*   Updated: 2017/12/22 19:29:31 by lramirez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,16 +92,13 @@ void			add_to_a(t_struct *stacks, t_element *new_elem, char last)
 
 void			free_stacks(t_struct *stacks)
 {
-	t_element	*tmp_stack;
-	t_element	*tmp_stack_next;
+	t_element	*tmp;
 
-	tmp_stack = stacks->a;
 	while (stacks->a_size)
 	{
-		tmp_stack_next = tmp_stack->next;
-		tmp_stack->next = NULL;
-		free(tmp_stack);
-		tmp_stack = tmp_stack_next;
+		tmp = stacks->a;
+		stacks->a = stacks->a->next;
+		free(tmp);
 		(stacks->a_size)--;
 	}
 	free(stacks);

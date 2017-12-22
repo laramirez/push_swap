@@ -6,7 +6,7 @@
 /*   By: lramirez <lramirez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/17 11:14:39 by lararamirez       #+#    #+#             */
-/*   Updated: 2017/12/22 18:14:43 by lramirez         ###   ########.fr       */
+/*   Updated: 2017/12/22 18:18:02 by lramirez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,10 +69,6 @@ void        small_compute(t_struct *stacks, t_list **instructions)
     {
         if (is_sortable_in_place(stacks->a, stacks->a_size))
             sort_a(stacks, stacks->a_size, instructions);
-        else if (stacks->a_size == 3)
-        {
-            
-        }
         else
         {
             bubble_up_min(find_min_index(stacks), stacks, instructions);

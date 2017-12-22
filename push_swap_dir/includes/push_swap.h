@@ -6,7 +6,7 @@
 /*   By: lramirez <lramirez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/22 12:21:19 by lararamirez       #+#    #+#             */
-/*   Updated: 2017/12/22 17:32:30 by lramirez         ###   ########.fr       */
+/*   Updated: 2017/12/22 19:21:30 by lramirez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,7 +102,7 @@ char			is_sortable_in_place_2(size_t *a_size,
 ** Functions in sort_b.c
 */
 void			sort_b(t_struct *stacks, size_t b_size, t_list **instructions);
-char		sort_b_2(t_struct *stacks, t_element *tmp, size_t *index, t_list **instructions);;
+char			sort_b_2(t_struct *stacks, t_element *tmp, size_t *index, t_list **instructions);;
 
 /*
 ** Functions in tools.c

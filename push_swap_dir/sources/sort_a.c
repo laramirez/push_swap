@@ -6,7 +6,7 @@
 /*   By: lramirez <lramirez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/03 10:41:55 by lramirez          #+#    #+#             */
-/*   Updated: 2017/12/14 12:11:28 by lramirez         ###   ########.fr       */
+/*   Updated: 2017/12/22 18:24:33 by lramirez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,11 @@ void		sort_a(t_struct *stacks, size_t a_size, t_list **instructions)
 
 	if (a_size == 2)
 		swap(stacks, instructions, 'a');
+	else if (a_size == 3 && is_rev_sorted(stacks->a, a_size))
+	{
+		rotate(stacks, instructions, 'a');
+		swap(stacks, instructions, 'a');
+	}
 	else
 	{
 		tmp = stacks->a;
@@ -90,7 +95,7 @@ char		is_sortable_in_place(t_element *a, size_t a_size)
 	size_t		index;
 	size_t		anomaly;
 
-	if (a_size <= 2)
+	if (a_size <= 2 || (a_size == 3 && is_rev_sorted(a, a_size)))
 		return (1);
 	tmp = a;
 	swap_needed =
