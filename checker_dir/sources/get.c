@@ -6,7 +6,7 @@
 /*   By: lramirez <lramirez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/05 10:23:13 by lararamirez       #+#    #+#             */
-/*   Updated: 2017/09/11 17:58:00 by lramirez         ###   ########.fr       */
+/*   Updated: 2017/12/30 16:54:27 by lramirez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,11 +40,12 @@ t_list		**get_instructions(t_list **instructions, t_stack *a)
 	int				ret;
 
 	tmp = *instructions;
-	ret = get_next_line(0, &tmp->command);
-	if (ret == 0)
+	if ((ret = get_next_line(0, &tmp->command)) == 0)
 	{
 		if (is_sorted(a))
 			ft_printf("OK\n");
+		else
+			ft_printf("KO\n");
 		exit(EXIT_SUCCESS);
 	}
 	else
