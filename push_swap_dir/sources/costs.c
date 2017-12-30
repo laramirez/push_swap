@@ -6,7 +6,7 @@
 /*   By: lramirez <lramirez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/05 15:20:53 by lararamirez       #+#    #+#             */
-/*   Updated: 2017/12/30 13:32:31 by lramirez         ###   ########.fr       */
+/*   Updated: 2017/12/30 16:00:23 by lramirez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,32 +48,33 @@ void		compute_cheapest(size_t *costs)
 	compute_cheapest_2(cost_2, cost_3, cost_4, costs);
 }
 
-void		get_b_placement_costs_2(t_index *i, size_t *costs, t_struct *stacks, t_element *a)
+void		get_b_placement_costs_2(t_index *i, size_t *costs,
+				t_struct *stacks, t_element *a)
 {
-	t_element 	*current;
-	
+	t_element	*current;
+
 	if (a->nbr < i->min)
+	{
+		costs[4] = (i->min_index == stacks->b_size - 1) ? 0 : i->min_index + 1;
+		costs[5] = stacks->b_size - i->min_index - 1;
+	}
+	else if (a->nbr > i->max)
+	{
+		costs[4] = (i->max_index == 0) ? 0 : i->max_index;
+		costs[5] = stacks->b_size - i->max_index;
+	}
+	else
+	{
+		current = stacks->b;
+		i->index = 0;
+		while (!(a->nbr > current->nbr && a->nbr < current->previous->nbr))
 		{
-			costs[4] = (i->min_index == stacks->b_size - 1) ? 0 : i->min_index + 1;
-			costs[5] = stacks->b_size - i->min_index - 1;
+			(i->index)++;
+			current = current->next;
 		}
-		else if (a->nbr > i->max)
-		{
-			costs[4] = (i->max_index == 0) ? 0 : i->max_index;
-			costs[5] = stacks->b_size - i->max_index;
-		}
-		else
-		{
-			current = stacks->b;
-			i->index = 0;
-			while (!(a->nbr > current->nbr && a->nbr < current->previous->nbr))
-			{
-				(i->index)++;
-				current = current->next;
-			}
-			costs[4] = i->index;
-			costs[5] = stacks->b_size - i->index;
-		}
+		costs[4] = i->index;
+		costs[5] = stacks->b_size - i->index;
+	}
 }
 
 void		get_b_placement_costs(size_t *costs, t_struct *stacks, t_element *a)
@@ -99,7 +100,7 @@ void		get_b_placement_costs(size_t *costs, t_struct *stacks, t_element *a)
 		i->max = current->next->nbr;
 		get_b_placement_costs_2(i, costs, stacks, a);
 	}
-	free (i);
+	free(i);
 }
 
 void		get_placement_costs(size_t *costs, t_struct *stacks,
@@ -116,32 +117,4 @@ void		get_placement_costs(size_t *costs, t_struct *stacks,
 	else
 		get_b_placement_costs(costs, stacks, a);
 	compute_cheapest(costs);
-}
-
-void		move_cheapest(t_struct *stacks, size_t *costs,
-	t_list **instructions)
-{
-	size_t		a_moves;
-	size_t		b_moves;
-
-	a_moves = (costs[6] == 1 || costs[6] == 3) ? costs[2] : costs[3];
-	b_moves = (costs[6] == 1 || costs[6] == 4) ? costs[4] : costs[5];
-	while (a_moves || b_moves)
-	{
-		if (a_moves)
-		{
-			(costs[6] == 1 || costs[6] == 3) ?
-				rotate(stacks, instructions, 'a') :
-					rev_rotate(stacks, instructions, 'a');
-			a_moves--;
-		}
-		if (b_moves)
-		{
-			(costs[6] == 1 || costs[6] == 4) ?
-				rotate(stacks, instructions, 'b') :
-					rev_rotate(stacks, instructions, 'b');
-			b_moves--;
-		}
-	}
-	push_a(stacks, instructions);
 }

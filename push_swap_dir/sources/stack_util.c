@@ -6,7 +6,7 @@
 /*   By: lramirez <lramirez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/07 11:59:37 by lararamirez       #+#    #+#             */
-/*   Updated: 2017/12/30 13:43:34 by lramirez         ###   ########.fr       */
+/*   Updated: 2017/12/30 15:47:45 by lramirez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,7 +97,6 @@ void			free_stacks(t_struct *stacks)
 	while (stacks->a_size)
 	{
 		tmp = stacks->a;
-		ft_printf("freeing %d\n", tmp->nbr);
 		stacks->a = stacks->a->next;
 		free(tmp);
 		(stacks->a_size)--;

@@ -6,7 +6,7 @@
 /*   By: lramirez <lramirez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/22 12:21:19 by lararamirez       #+#    #+#             */
-/*   Updated: 2017/12/30 13:23:42 by lramirez         ###   ########.fr       */
+/*   Updated: 2017/12/30 16:32:16 by lramirez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,6 +76,8 @@ void			push_back_onto_a(t_struct *stacks, t_list **instructions);
 void			copy_tab(size_t *tab, size_t *cpy);
 void			push_cheapest_onto_b(t_struct *stacks, t_list **instructions);
 t_list			**compute_solution(t_struct *stacks, t_list **instructions);
+void			move_cheapest(t_struct *stacks, size_t *costs,
+					t_list **instructions);
 
 /*
 ** Functions in costs.c
@@ -85,9 +87,10 @@ void			compute_cheapest_2(size_t cost_2, size_t cost_3,
 void			compute_cheapest(size_t *costs);
 void			get_placement_costs(size_t *costs, t_struct *stacks,
 					t_element *a, size_t index);
-void			get_b_placement_costs(size_t *costs, t_struct *stacks, t_element *a);
-void			move_cheapest(t_struct *stacks, size_t *costs,
-					t_list **instructions);
+void			get_b_placement_costs_2(t_index *i, size_t *costs,
+				t_struct *stacks, t_element *a);
+void			get_b_placement_costs(size_t *costs,
+					t_struct *stacks, t_element *a);
 
 /*
 ** Functions in stack_util.c
@@ -98,21 +101,25 @@ void			add_to_a(t_struct *stacks, t_element *new_elem, char last);
 void			free_stacks(t_struct *stacks);
 
 /*
-** Functions in sort_a.c
+** Functions in is_sortable.c
 */
-char			sort_a_2(t_struct *stacks, t_element *tmp, size_t *index,
-					t_list **instructions);
-void			sort_a(t_struct *stacks, size_t a_size, t_list **instructions);
-void			init(size_t *index, size_t *anomaly, t_element **start);
+
+void			init(size_t *index, t_element **start,
+					t_element **tmp, t_element *a);
+void			set_start(char *swap_needed, t_element **start, t_element *tmp);
 char			is_sortable_in_place(t_element *a, size_t a_size);
 char			is_sortable_in_place_2(size_t *a_size,
 					char *swap_needed, t_element **start);
 
 /*
-** Functions in sort_b.c
+** Functions in sort.c
 */
+void			sort_a(t_struct *stacks, size_t a_size, t_list **instructions);
+char			sort_a_2(t_struct *stacks, t_element *tmp, size_t *index,
+					t_list **instructions);
 void			sort_b(t_struct *stacks, size_t b_size, t_list **instructions);
-char			sort_b_2(t_struct *stacks, t_element *tmp, size_t *index, t_list **instructions);;
+char			sort_b_2(t_struct *stacks, t_element *tmp,
+					size_t *index, t_list **instructions);
 
 /*
 ** Functions in tools.c
@@ -125,8 +132,9 @@ void			concatenate(t_list *current, t_list *next, char *command);
 /*
 ** Functions in small_compute.c
 */
-void        	small_compute(t_struct *stacks, t_list **instructions);
-size_t        	find_min_index(t_struct *stacks);
-void           	bubble_up_min(size_t index, t_struct *stacks, t_list **instructions);
+void			small_compute(t_struct *stacks, t_list **instructions);
+size_t			find_min_index(t_struct *stacks);
+void			bubble_up_min(size_t index, t_struct *stacks,
+					t_list **instructions);
 
 #endif

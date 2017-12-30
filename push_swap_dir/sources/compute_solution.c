@@ -6,7 +6,7 @@
 /*   By: lramirez <lramirez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/02 12:11:19 by lararamirez       #+#    #+#             */
-/*   Updated: 2017/12/30 13:08:42 by lramirez         ###   ########.fr       */
+/*   Updated: 2017/12/30 16:00:40 by lramirez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,4 +80,32 @@ t_list		**compute_solution(t_struct *stacks, t_list **instructions)
 		push_back_onto_a(stacks, instructions);
 	}
 	return (instructions);
+}
+
+void		move_cheapest(t_struct *stacks, size_t *costs,
+	t_list **instructions)
+{
+	size_t		a_moves;
+	size_t		b_moves;
+
+	a_moves = (costs[6] == 1 || costs[6] == 3) ? costs[2] : costs[3];
+	b_moves = (costs[6] == 1 || costs[6] == 4) ? costs[4] : costs[5];
+	while (a_moves || b_moves)
+	{
+		if (a_moves)
+		{
+			(costs[6] == 1 || costs[6] == 3) ?
+				rotate(stacks, instructions, 'a') :
+					rev_rotate(stacks, instructions, 'a');
+			a_moves--;
+		}
+		if (b_moves)
+		{
+			(costs[6] == 1 || costs[6] == 4) ?
+				rotate(stacks, instructions, 'b') :
+					rev_rotate(stacks, instructions, 'b');
+			b_moves--;
+		}
+	}
+	push_a(stacks, instructions);
 }

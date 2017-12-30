@@ -6,7 +6,7 @@
 /*   By: lramirez <lramirez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/07 12:10:54 by lararamirez       #+#    #+#             */
-/*   Updated: 2017/12/30 15:17:34 by lramirez         ###   ########.fr       */
+/*   Updated: 2017/12/30 16:35:34 by lramirez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,8 +42,8 @@ void			display_instructions(t_list **instructions, char option)
 
 void			usage(void)
 {
-	write(1, "usage : ./push_swap [-t] [\"int int ...\"] or \
-		./push_swap [-t] [int] [int] [...]\n", 79);
+	ft_printf("usage : ./push_swap [-t] [\"int int ...\"] or ");
+	ft_printf("./push_swap [-t] [int] [int] [...]\n");
 	exit(EXIT_SUCCESS);
 }
 
@@ -90,6 +90,5 @@ int				main(int argc, char **argv)
 		small_compute(stacks, &instructions);
 	display_instructions(optimize(&instructions), option);
 	free_stacks(stacks);
-	while (1);
 	return (0);
 }
