@@ -6,7 +6,7 @@
 /*   By: lramirez <lramirez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/22 12:21:19 by lararamirez       #+#    #+#             */
-/*   Updated: 2017/12/22 19:21:30 by lramirez         ###   ########.fr       */
+/*   Updated: 2017/12/30 13:23:42 by lramirez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@
 typedef struct s_element	t_element;
 typedef struct s_struct		t_struct;
 typedef	struct s_list		t_list;
+typedef	struct s_index		t_index;
 
 struct			s_element
 {
@@ -40,6 +41,15 @@ struct			s_list
 {
 	char		*command;
 	t_list		*next;
+};
+
+struct			s_index
+{
+	int			min;
+	int			max;
+	size_t		index;
+	size_t		min_index;
+	size_t		max_index;
 };
 
 /*

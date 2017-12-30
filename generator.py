@@ -1,6 +1,6 @@
 import random
-nums = 10
-a = range(-10000,10000)
+nums = 5
+a = range(-500,500)
 for i in xrange(nums):
     b = a[random.randint(0, len(a)-i)]
     a.remove(b)

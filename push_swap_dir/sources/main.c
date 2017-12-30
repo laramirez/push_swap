@@ -6,12 +6,11 @@
 /*   By: lramirez <lramirez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/07 12:10:54 by lararamirez       #+#    #+#             */
-/*   Updated: 2017/12/22 19:22:29 by lramirez         ###   ########.fr       */
+/*   Updated: 2017/12/30 15:17:34 by lramirez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
-#include <stdio.h>
 
 void			display_instructions(t_list **instructions, char option)
 {

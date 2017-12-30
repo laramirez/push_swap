@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   compute_solution.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lararamirez <lararamirez@student.42.fr>    +#+  +:+       +#+        */
+/*   By: lramirez <lramirez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/02 12:11:19 by lararamirez       #+#    #+#             */
-/*   Updated: 2017/12/16 19:13:15 by lararamirez      ###   ########.fr       */
+/*   Updated: 2017/12/30 13:08:42 by lramirez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,14 @@
 
 /*
 ** Key for the costs tab:
-** [INDEX_IN_A] [BEST_TOTAL_COST] [A_UP] [A_DOWN] [B_UP] [B_DOWN] [KEY]
-** The KEY indicates which route led to the best total cost :
+** [0][INDEX_IN_A]
+** [1][BEST_TOTAL_COST]
+** [2][COST_A_UP]
+** [3][COST_A_DOWN]
+** [4][COST_B_UP]
+** [5][COST_B_DOWN]
+** [6][PATH_KEY]
+** The KEY indicates which route led to the best total cost:
 ** KEY 1 = A_UP + B_UP
 ** KEY 2 = A_DOWN + A_DOWN
 ** KEY 3 = A_UP + B_DOWN
