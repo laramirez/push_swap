@@ -23,7 +23,15 @@ Code	| Instruction			| Action
 ## Compiling
 Run `make`.
 
-## Running
+## Running push_swap
 ```
-./push_swap 1 2 3 4
+./push_swap [-t] 10 -2 35 40 0
 ```
+Push_swap generates the optimal list of instructions to sort the integers. Use -t to display number of operations. 
+
+## Running checker
+```
+ARG="10 -2 35 40 0"; ./push_swap $ARG | ./checker $ARG
+```
+Checker takes the list of instructions generated and applies it to the list of integers, checking that it does indeed sort it. Use -v to display the two stacks at each operation.
+
