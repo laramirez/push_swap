@@ -31,7 +31,7 @@ Push_swap generates the optimal list of instructions to sort the integers. Use -
 
 ## Running checker
 ```
-ARG="10 -2 35 40 0"; ./push_swap $ARG | ./checker $ARG
+ARG="10 -2 35 40 0"; ./push_swap $ARG | ./checker [-v] $ARG
 ```
 Checker takes the list of instructions generated and applies it to the list of integers, checking that it does indeed sort it. Use -v to display the two stacks at each operation.
 
