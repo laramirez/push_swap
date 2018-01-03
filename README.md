@@ -1,8 +1,10 @@
 # push_swap
-Project from 42 School, from the AI & Algorithms branch
+Project from 42 School, AI & Algorithms branch
 
 Given any initial stack of integers, sort in ascending order using only a second stack through a limited predefined set of instructions.
-The program should output the optimal set of instructions (i.e. that sorts the stack in the least number of movements).
+
+A first program should output the optimal set of instructions (i.e. that sorts the stack in the least number of movements).
+A second program should take the outputted set of instructions and apply it, checking that it does indeed sort the stack correctly.
 
 ## Instruction set
 
